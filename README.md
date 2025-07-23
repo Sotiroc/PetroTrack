@@ -1,4 +1,29 @@
-# PetroTrack
+# PetroTrack - Trip Cost Tracking Application
+
+A modern web application for tracking and calculating travel costs based on fuel consumption, helping users manage and monitor their transportation expenses.
+
+## 🚗 Features
+
+- **Trip Management**: Add, edit, and delete trips with distance and frequency tracking
+- **Cost Calculation**: Automatically calculate cost per kilometer from fuel fill-up data
+- **Manual Cost Entry**: Set your cost per km manually if you know the value
+- **Dashboard**: View all trips with real-time cost calculations and summary statistics
+- **Responsive Design**: Works perfectly on desktop and mobile devices
+- **Data Persistence**: All data is saved locally in your browser
+
+## 🎯 Live Demo
+
+Visit the live application: [https://sotiroc.github.io/PetroTrack/](https://sotiroc.github.io/PetroTrack/)
+
+## 🛠️ Built With
+
+- **Angular 20** - Modern web framework
+- **TypeScript** - Type-safe development
+- **RxJS** - Reactive programming
+- **CSS3** - Modern styling with glassmorphism effects
+- **LocalStorage** - Client-side data persistence
+
+## 🚀 Getting Started
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.2.
 

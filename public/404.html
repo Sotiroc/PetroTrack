@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PetroTrack</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Redirect all routes to index.html for Angular routing -->
+  <script>
+    // Store the requested path and redirect to index.html
+    sessionStorage.setItem('redirectPath', location.pathname);
+    location.replace(location.origin + location.pathname.split('/').slice(0, -1).join('/') + '/index.html');
+  </script>
+</head>
+<body>
+  <!-- This will be replaced by the redirect script above -->
+  <p>Redirecting...</p>
+</body>
+</html>

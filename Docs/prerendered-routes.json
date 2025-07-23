@@ -1,0 +1,7 @@
+{
+  "routes": {
+    "/petrotrack": {},
+    "/petrotrack/calculate-cost": {},
+    "/petrotrack/dashboard": {}
+  }
+}

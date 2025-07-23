@@ -1,0 +1,17 @@
+Create me my tasks here in this format 
+
+Phase 1 - Phase title
+[] Do x y z
+[] do this and that 
+
+Phase 2 - Phase title
+[] Do x y z
+[] do this and that 
+
+Phase 3 - Phase title
+[] Do x y z
+[] do this and that 
+
+Phase 4 - Phase title
+[] Do x y z
+[] do this and that 

@@ -1,0 +1,146 @@
+<header class="page-header">
+  <h1>Calculate Cost per Km</h1>
+</header>
+
+<div class="cost-options">
+  <div class="option-tabs">
+    <button 
+      class="tab-btn" 
+      [class.active]="activeTab === 'calculate'"
+      (click)="setActiveTab('calculate')">
+      Calculate Cost
+    </button>
+    <button 
+      class="tab-btn" 
+      [class.active]="activeTab === 'manual'"
+      (click)="setActiveTab('manual')">
+      Set Price Manually
+    </button>
+  </div>
+
+  <!-- Calculate Cost Tab -->
+  @if (activeTab === 'calculate') {
+    <div class="tab-content">
+      <div class="cost-card">
+        <h3>Calculate Cost per Km</h3>
+        <p class="description">Enter your fuel costs and distances to automatically calculate your cost per kilometer.</p>
+        
+        <form class="cost-form" [formGroup]="calculateForm" (ngSubmit)="onCalculateSubmit()">
+          <div class="form-group">
+            <label for="fillUpCost">Cost to Fill Up Car (R)</label>
+            <input 
+              type="number" 
+              id="fillUpCost" 
+              formControlName="fillUpCost"
+              step="0.01" 
+              placeholder="e.g., 800.00">
+            @if (calculateForm.get('fillUpCost')?.invalid && calculateForm.get('fillUpCost')?.touched) {
+              <div class="error-message">
+                @if (calculateForm.get('fillUpCost')?.errors?.['required']) {
+                  Fill up cost is required
+                }
+                @if (calculateForm.get('fillUpCost')?.errors?.['min']) {
+                  Fill up cost must be greater than 0
+                }
+              </div>
+            }
+          </div>
+          
+          <div class="form-group">
+            <label for="distanceBefore">Distance Before Fill Up (km)</label>
+            <input 
+              type="number" 
+              id="distanceBefore" 
+              formControlName="distanceBefore"
+              step="0.1" 
+              placeholder="e.g., 150250.5">
+            @if (calculateForm.get('distanceBefore')?.invalid && calculateForm.get('distanceBefore')?.touched) {
+              <div class="error-message">
+                @if (calculateForm.get('distanceBefore')?.errors?.['required']) {
+                  Distance before fill up is required
+                }
+                @if (calculateForm.get('distanceBefore')?.errors?.['min']) {
+                  Distance must be 0 or greater
+                }
+              </div>
+            }
+          </div>
+          
+          <div class="form-group">
+            <label for="distanceAfter">Distance After Fill Up (km)</label>
+            <input 
+              type="number" 
+              id="distanceAfter" 
+              formControlName="distanceAfter"
+              step="0.1" 
+              placeholder="e.g., 150650.5">
+            @if (calculateForm.get('distanceAfter')?.invalid && calculateForm.get('distanceAfter')?.touched) {
+              <div class="error-message">
+                @if (calculateForm.get('distanceAfter')?.errors?.['required']) {
+                  Distance after fill up is required
+                }
+                @if (calculateForm.get('distanceAfter')?.errors?.['min']) {
+                  Distance must be greater than 0
+                }
+              </div>
+            }
+          </div>
+          
+          <button type="submit" class="calculate-btn" [disabled]="calculateForm.invalid">
+            Calculate Cost per Km
+          </button>
+        </form>
+        
+        @if (showResult && calculationResult) {
+          <div class="calculation-result">
+            <div class="result-info">
+              <div class="result-label">Distance Traveled:</div>
+              <div class="result-value">{{ calculationResult.distanceTraveled | number:'1.1-1' }} km</div>
+            </div>
+            <div class="result-info">
+              <div class="result-label">Calculated Cost per Km:</div>
+              <div class="result-value primary">{{ calculationResult.calculatedCostPerKm | currency:'ZAR':'symbol':'1.2-2' }}</div>
+            </div>
+            <button class="apply-btn" (click)="applyCalculatedCost()">Apply This Cost</button>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Manual Set Tab -->
+  @if (activeTab === 'manual') {
+    <div class="tab-content">
+      <div class="cost-card">
+        <h3>Set Price Manually</h3>
+        <p class="description">Manually set your cost per kilometer if you already know the value.</p>
+        
+        <form class="cost-form" [formGroup]="manualForm" (ngSubmit)="onManualSubmit()">
+          <div class="form-group">
+            <label for="manualCost">Cost per Km (R)</label>
+            <input 
+              type="number" 
+              id="manualCost" 
+              formControlName="costPerKm"
+              step="0.01" 
+              placeholder="e.g., 2.50">
+            @if (manualForm.get('costPerKm')?.invalid && manualForm.get('costPerKm')?.touched) {
+              <div class="error-message">
+                @if (manualForm.get('costPerKm')?.errors?.['required']) {
+                  Cost per km is required
+                }
+                @if (manualForm.get('costPerKm')?.errors?.['min']) {
+                  Cost per km must be greater than 0
+                }
+              </div>
+            }
+          </div>
+          
+          <button type="submit" class="save-btn" [disabled]="manualForm.invalid">
+            Save Cost per Km
+          </button>
+        </form>
+      </div>
+    </div>
+  }
+</div>

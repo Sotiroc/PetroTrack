@@ -1,0 +1,46 @@
+Project Scope: Trip Cost Tracking Application
+Core Purpose:
+A web application for tracking and calculating travel costs based on fuel consumption, helping users manage and monitor their transportation expenses.
+
+Main Features:
+1. Dashboard (Main Page)
+Trip Management: Users can add, edit, and delete trips
+Trip Cards Display: Shows all saved trips in a grid layout with:
+Trip name (e.g., "Work Commute", "Weekend Shopping")
+Distance per trip (in km)
+Frequency (trips per month)
+Calculated monthly cost
+Add New Trip Modal: Form to create new trips with validation
+2. Cost Calculation System
+Automatic Calculation: Calculate cost per kilometer based on:
+Cost to fill up the car
+Distance before fill-up
+Distance after fill-up
+Formula: Cost per km = Fill-up cost / (Distance after - Distance before)
+Manual Override: Users can manually set their cost per km if they already know it
+Persistent Storage: Saves the cost per km value using localStorage
+3. Key Data Points Tracked:
+Cost per kilometer (displayed in sidebar)
+Individual trips with name, distance, and frequency
+Monthly cost calculations for each trip
+Total fuel efficiency based on actual fill-up data
+4. User Interface:
+Responsive design with a modern gradient background
+Sidebar navigation with current cost per km display
+Modal-based forms for adding/editing trips
+Tab-based interface for different calculation methods
+Card-based layout for trip display
+Technical Stack (from mock-up):
+Pure HTML, CSS, and JavaScript
+LocalStorage for data persistence
+Inter font from Google Fonts
+Responsive grid layouts
+Modern CSS with gradients and backdrop filters
+Target Use Cases:
+Commuters tracking daily work travel costs
+Business travelers calculating expense reports
+Budget-conscious individuals monitoring fuel expenses
+Fleet managers tracking multiple vehicle routes
+The application is essentially a personal fuel cost tracker that helps users understand their transportation expenses by combining actual fuel costs with travel patterns. It's particularly useful for people who want to budget for fuel costs or track the financial impact of their regular trips.
+
+Would you like me to help you plan how to implement this in your Angular project?

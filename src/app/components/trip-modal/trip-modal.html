@@ -1,0 +1,79 @@
+@if (show) {
+  <div class="modal-overlay" (click)="onBackdropClick($event)">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>{{ modalTitle }}</h3>
+        <button class="close-btn" (click)="onClose()">&times;</button>
+      </div>
+      <form class="trip-form" [formGroup]="tripForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="tripName">Trip Name</label>
+          <input 
+            type="text" 
+            id="tripName" 
+            formControlName="name" 
+            placeholder="e.g., Work Commute"
+            maxlength="50">
+          @if (tripForm.get('name')?.invalid && tripForm.get('name')?.touched) {
+            <div class="error-message">
+              @if (tripForm.get('name')?.errors?.['required']) {
+                Trip name is required
+              }
+              @if (tripForm.get('name')?.errors?.['maxlength']) {
+                Trip name must be 50 characters or less
+              }
+            </div>
+          }
+        </div>
+        
+        <div class="form-group">
+          <label for="distance">Distance (km)</label>
+          <input 
+            type="number" 
+            id="distance" 
+            formControlName="distance"
+            step="0.1" 
+            min="0.1" 
+            placeholder="e.g., 25.5">
+          @if (tripForm.get('distance')?.invalid && tripForm.get('distance')?.touched) {
+            <div class="error-message">
+              @if (tripForm.get('distance')?.errors?.['required']) {
+                Distance is required
+              }
+              @if (tripForm.get('distance')?.errors?.['min']) {
+                Distance must be at least 0.1 km
+              }
+            </div>
+          }
+        </div>
+        
+        <div class="form-group">
+          <label for="frequency">Trips per Month</label>
+          <input 
+            type="number" 
+            id="frequency" 
+            formControlName="frequency"
+            min="1" 
+            placeholder="e.g., 22">
+          @if (tripForm.get('frequency')?.invalid && tripForm.get('frequency')?.touched) {
+            <div class="error-message">
+              @if (tripForm.get('frequency')?.errors?.['required']) {
+                Frequency is required
+              }
+              @if (tripForm.get('frequency')?.errors?.['min']) {
+                Must be at least 1 trip per month
+              }
+            </div>
+          }
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" (click)="onClose()">Cancel</button>
+          <button type="submit" class="save-btn" [disabled]="tripForm.invalid">
+            {{ isEditing ? 'Update Trip' : 'Save Trip' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}

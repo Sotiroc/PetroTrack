@@ -1,0 +1,29 @@
+<div class="trip-card">
+  <div class="trip-header">
+    <div>
+      <div class="trip-name">{{ trip.name }}</div>
+    </div>
+    <div class="trip-actions">
+      <button class="action-btn edit-btn" (click)="onEdit()" title="Edit Trip">
+        ✏️
+      </button>
+      <button class="action-btn delete-btn" (click)="onDelete()" title="Delete Trip">
+        🗑️
+      </button>
+    </div>
+  </div>
+  <div class="trip-stats">
+    <div class="stat-item">
+      <span class="stat-label">Distance</span>
+      <span class="stat-value">{{ trip.distance }} km</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Frequency</span>
+      <span class="stat-value">{{ trip.frequency }} trips/month</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Monthly Cost</span>
+      <span class="stat-value monthly-cost">{{ monthlyCost | currency:'ZAR':'symbol':'1.2-2' }}</span>
+    </div>
+  </div>
+</div>

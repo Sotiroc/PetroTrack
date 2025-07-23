@@ -1,0 +1,52 @@
+<header class="page-header">
+  <h1>Trip Dashboard</h1>
+  <button class="add-trip-btn" (click)="openAddTripModal()">
+    <span>+</span>
+    Add New Trip
+  </button>
+</header>
+
+<div class="dashboard-stats">
+  <div class="stat-card">
+    <div class="stat-label">Total Trips</div>
+    <div class="stat-value">{{ tripSummary.totalTrips }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Monthly Distance</div>
+    <div class="stat-value">{{ tripSummary.totalMonthlyDistance | number:'1.1-1' }} km</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Monthly Cost</div>
+    <div class="stat-value">{{ tripSummary.totalMonthlyCost | currency:'ZAR':'symbol':'1.2-2' }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Avg Cost/Trip</div>
+    <div class="stat-value">{{ tripSummary.averageCostPerTrip | currency:'ZAR':'symbol':'1.2-2' }}</div>
+  </div>
+</div>
+
+<div class="trips-grid">
+  @for (trip of trips$ | async; track trip.id) {
+    <app-trip-card 
+      [trip]="trip"
+      (editTrip)="openEditTripModal($event)"
+      (deleteTrip)="onTripDeleted($event)">
+    </app-trip-card>
+  } @empty {
+    <div class="empty-state">
+      <div class="empty-icon">🚗</div>
+      <h3>No trips yet</h3>
+      <p>Add your first trip to start tracking costs</p>
+      <button class="add-first-trip-btn" (click)="openAddTripModal()">
+        Add Your First Trip
+      </button>
+    </div>
+  }
+</div>
+
+<app-trip-modal
+  [show]="showTripModal"
+  [trip]="editingTrip"
+  (close)="closeTripModal()"
+  (tripSaved)="onTripSaved()">
+</app-trip-modal>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Tracker - Calculate Cost</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🚗</div>
+                    <h2>Trip Tracker</h2>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <span class="nav-icon">📊</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="calculate-cost.html" class="nav-link">
+                        <span class="nav-icon">💰</span>
+                        Calculate Cost per Km
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="cost-per-km-display">
+                <div class="cost-label">Current Cost per Km</div>
+                <div class="cost-value" id="costPerKm">R2.00</div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <h1>Calculate Cost per Km</h1>
+            </header>
+
+            <div class="cost-options">
+                <div class="option-tabs">
+                    <button class="tab-btn active" onclick="showCalculateTab()">Calculate Cost</button>
+                    <button class="tab-btn" onclick="showManualTab()">Set Price Manually</button>
+                </div>
+
+                <!-- Calculate Cost Tab -->
+                <div class="tab-content active" id="calculateTab">
+                    <div class="cost-card">
+                        <h3>Calculate Cost per Km</h3>
+                        <p class="description">Enter your fuel costs and distances to automatically calculate your cost per kilometer.</p>
+                        
+                        <form class="cost-form" id="calculateForm">
+                            <div class="form-group">
+                                <label for="fillUpCost">Cost to Fill Up Car (R)</label>
+                                <input type="number" id="fillUpCost" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="distanceBefore">Distance Before Fill Up (km)</label>
+                                <input type="number" id="distanceBefore" step="0.1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="distanceAfter">Distance After Fill Up (km)</label>
+                                <input type="number" id="distanceAfter" step="0.1" required>
+                            </div>
+                            
+                            <button type="submit" class="calculate-btn">Calculate Cost per Km</button>
+                        </form>
+                        
+                        <div class="calculation-result" id="calculationResult" style="display: none;">
+                            <div class="result-label">Calculated Cost per Km:</div>
+                            <div class="result-value" id="calculatedCost">R0.00</div>
+                            <button class="apply-btn" onclick="applyCost()">Apply This Cost</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manual Set Tab -->
+                <div class="tab-content" id="manualTab">
+                    <div class="cost-card">
+                        <h3>Set Price Manually</h3>
+                        <p class="description">Manually set your cost per kilometer if you already know the value.</p>
+                        
+                        <form class="cost-form" id="manualForm">
+                            <div class="form-group">
+                                <label for="manualCost">Cost per Km (R)</label>
+                                <input type="number" id="manualCost" step="0.01" required>
+                            </div>
+                            
+                            <button type="submit" class="save-btn">Save Cost per Km</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="calculate-script.js"></script>
+</body>
+</html>
